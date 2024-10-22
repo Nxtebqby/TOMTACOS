@@ -41,7 +41,7 @@
         .flower-container {
             position: relative;
             width: 100px; /* Ajustar el tamaño de la flor */
-            height: 100px; /* Ajustar altura total */
+            height: 140px; /* Ajustar altura total para la flor */
             display: none; /* Oculta la flor inicialmente */
             margin-top: 20px;
         }
@@ -83,12 +83,12 @@
         }
 
         /* Distribución de los pétalos alrededor del centro */
-        .petal:nth-child(1) { top: 10px; left: 50%; transform: translate(-50%, -50%); } /* Arriba */
-        .petal:nth-child(2) { top: 50%; left: 10px; transform: translate(-50%, -50%); } /* Izquierda */
-        .petal:nth-child(3) { top: 50%; right: 10px; transform: translate(50%, -50%); } /* Derecha */
-        .petal:nth-child(4) { bottom: 10px; left: 50%; transform: translate(-50%, 50%); } /* Abajo */
-        .petal:nth-child(5) { top: 25px; left: 20px; transform: translate(-50%, -50%); } /* Superior Izquierda */
-        .petal:nth-child(6) { top: 25px; right: 20px; transform: translate(50%, -50%); } /* Superior Derecha */
+        .petal:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, -50%); } /* Arriba */
+        .petal:nth-child(2) { top: 30px; left: 0; transform: translate(-50%, -50%); } /* Izquierda */
+        .petal:nth-child(3) { top: 30px; right: 0; transform: translate(50%, -50%); } /* Derecha */
+        .petal:nth-child(4) { bottom: 0; left: 50%; transform: translate(-50%, 50%); } /* Abajo */
+        .petal:nth-child(5) { top: 15px; left: 20px; transform: translate(-50%, -50%); } /* Superior Izquierda */
+        .petal:nth-child(6) { top: 15px; right: 20px; transform: translate(50%, -50%); } /* Superior Derecha */
 
         @keyframes growPetal {
             0% {
@@ -108,7 +108,7 @@
             height: 30px;
             background: yellow;
             border-radius: 50%;
-            top: 50%;
+            top: 25%; /* Ajustar para elevar el centro */
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0;
