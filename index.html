@@ -41,7 +41,7 @@
         .flower-container {
             position: relative;
             width: 100px; /* Ajustar el tamaño de la flor */
-            height: 150px; /* Ajustar altura total */
+            height: 100px; /* Ajustar altura total */
             display: none; /* Oculta la flor inicialmente */
             margin-top: 20px;
         }
@@ -74,7 +74,7 @@
         .petal {
             position: absolute;
             width: 40px; /* Ajustar el tamaño de los pétalos */
-            height: 60px;
+            height: 40px; /* Tamaño ajustado */
             background: white;
             border-radius: 50%;
             opacity: 0;
@@ -82,14 +82,13 @@
             animation: growPetal 0.8s ease forwards;
         }
 
-        /* Distribución de los pétalos en forma de rosa */
-        .petal:nth-child(1) { top: 30px; left: 50%; transform: translate(-50%, -100%); }
-        .petal:nth-child(2) { top: 10px; left: 0; transform: translate(-50%, -50%); }
-        .petal:nth-child(3) { top: 10px; left: 100%; transform: translate(-100%, -50%); }
-        .petal:nth-child(4) { top: 50px; left: 10px; transform: translate(-50%, -50%); }
-        .petal:nth-child(5) { top: 50px; right: 10px; transform: translate(50%, -50%); }
-        .petal:nth-child(6) { top: 30px; left: 20px; transform: translate(-50%, -50%); }
-        .petal:nth-child(7) { top: 30px; right: 20px; transform: translate(50%, -50%); }
+        /* Distribución de los pétalos alrededor del centro */
+        .petal:nth-child(1) { top: 10px; left: 50%; transform: translate(-50%, -50%); } /* Arriba */
+        .petal:nth-child(2) { top: 50%; left: 10px; transform: translate(-50%, -50%); } /* Izquierda */
+        .petal:nth-child(3) { top: 50%; right: 10px; transform: translate(50%, -50%); } /* Derecha */
+        .petal:nth-child(4) { bottom: 10px; left: 50%; transform: translate(-50%, 50%); } /* Abajo */
+        .petal:nth-child(5) { top: 25px; left: 20px; transform: translate(-50%, -50%); } /* Superior Izquierda */
+        .petal:nth-child(6) { top: 25px; right: 20px; transform: translate(50%, -50%); } /* Superior Derecha */
 
         @keyframes growPetal {
             0% {
@@ -109,7 +108,7 @@
             height: 30px;
             background: yellow;
             border-radius: 50%;
-            top: 25px; /* Ajustado para estar más cerca de los pétalos */
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0;
@@ -165,7 +164,6 @@
     <!-- Contenedor de la flor -->
     <div class="flower-container" id="flowerContainer">
         <div class="stem"></div>
-        <div class="petal"></div>
         <div class="petal"></div>
         <div class="petal"></div>
         <div class="petal"></div>
