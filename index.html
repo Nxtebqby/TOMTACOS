@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Te quiero mucho, Sebastian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet"> <!-- Importar Poppins -->
     <style>
         body {
             background-color: black;
@@ -12,7 +13,7 @@
             align-items: center;
             height: 100vh;
             flex-direction: column;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif; /* Cambiar la fuente a Poppins */
             overflow: hidden;
             position: relative;
             text-align: center;
@@ -127,7 +128,7 @@
         /* Botón */
         button {
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 14px; /* Tamaño del texto reducido */
             background-color: white;
             color: black;
             border: none;
@@ -148,22 +149,15 @@
 
         /* Estilo para el mensaje */
         #message {
-            font-size: 14px; /* Tamaño del texto reducido */
+            font-size: 12px; /* Tamaño del texto reducido */
             font-weight: bold;
             display: none; /* Oculta el mensaje inicialmente */
-            margin-top: 20px;
-            font-family: 'Arial', sans-serif; /* Cambiar a la fuente que desees */
+            margin-top: 10px; /* Espacio entre la flor y el mensaje */
+            font-family: 'Poppins', sans-serif; /* Cambiar a la fuente que desees */
             opacity: 0; /* Inicialmente invisible */
             animation: fadeIn 1s ease forwards; /* Animación de fade in */
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+            position: relative; /* Posición relativa para colocarlo debajo de la rosa */
+            top: 10px; /* Ajustar la distancia desde la rosa */
         }
     </style>
 </head>
@@ -225,7 +219,7 @@
                 message.style.display = 'block';
                 message.style.animation = 'fadeIn 1s ease forwards'; // Agrega animación de fade in
                 message.style.opacity = 1; // Asegúrate de que sea visible
-            }, 2000); // Muestra el mensaje después de 2 segundos 
+            }, 1000); // Muestra el mensaje después de 1 segundos 
         });
     </script>
 
