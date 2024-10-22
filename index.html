@@ -1,88 +1,92 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Te quiero mucho, Sebastian</title>
+    <title>I love you, Sebastian</title>
     <style>
         body {
-            background-color: white;
+            background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             flex-direction: column;
             font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
         }
 
-        .rose-container {
+        /* Particles or stars in the background */
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .tulip-container {
             position: relative;
             width: 100px;
             height: 200px;
         }
 
-        /* Tallo */
+        /* Stem */
         .stem {
             position: absolute;
-            bottom: 0;
             width: 4px;
             height: 150px;
-            background-color: green;
-            animation: grow-stem 2s ease-in-out forwards;
-            opacity: 0;
+            background-color: white;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: growStem 2s ease-in-out forwards;
         }
 
-        @keyframes grow-stem {
-            from {
-                height: 0;
-                opacity: 0;
-            }
-            to {
-                height: 150px;
-                opacity: 1;
-            }
-        }
-
-        /* Pétalos */
+        /* Petals */
         .petal {
             position: absolute;
             width: 60px;
-            height: 60px;
-            background: pink;
-            border-radius: 50%;
-            animation: grow-petal 2s ease-in-out forwards;
+            height: 80px;
+            background: white;
+            border-radius: 60% 60% 0 0;
             opacity: 0;
+            transform: scale(0.2);
+            animation: growPetal 2s ease-in-out forwards;
         }
 
-        .petal:nth-child(2) { /* Pétalo superior */
-            top: -40px;
-            left: 20px;
+        .petal:nth-child(2) {
+            top: 10px;
+            left: 10px;
+            transform: rotate(-20deg);
+            animation-delay: 0.5s;
+        }
+
+        .petal:nth-child(3) {
+            top: 10px;
+            right: 10px;
+            transform: rotate(20deg);
             animation-delay: 1s;
         }
-        .petal:nth-child(3) { /* Pétalo inferior izquierdo */
-            top: 10px;
-            left: 0;
-            transform: rotate(-45deg);
+
+        .petal:nth-child(4) {
+            top: 0;
+            left: 25px;
             animation-delay: 1.5s;
-        }
-        .petal:nth-child(4) { /* Pétalo inferior derecho */
-            top: 10px;
-            left: 40px;
-            transform: rotate(45deg);
-            animation-delay: 1.5s;
-        }
-        .petal:nth-child(5) { /* Pétalo medio izquierdo */
-            top: -10px;
-            left: -20px;
-            animation-delay: 2s;
-        }
-        .petal:nth-child(6) { /* Pétalo medio derecho */
-            top: -10px;
-            left: 60px;
-            animation-delay: 2s;
         }
 
-        @keyframes grow-petal {
+        @keyframes growPetal {
             from {
                 transform: scale(0.2);
                 opacity: 0;
@@ -93,9 +97,19 @@
             }
         }
 
+        @keyframes growStem {
+            from {
+                height: 0;
+            }
+            to {
+                height: 150px;
+            }
+        }
+
+        /* Button */
         .button-container {
             display: none;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .show-button {
@@ -105,8 +119,8 @@
         button {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: pink;
-            color: white;
+            background-color: white;
+            color: black;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -121,28 +135,42 @@
                 opacity: 1;
             }
         }
+
     </style>
 </head>
 <body>
 
-    <div class="rose-container">
-        <div class="stem"></div> <!-- Tallo -->
-        <div class="petal"></div> <!-- Pétalo superior -->
-        <div class="petal"></div> <!-- Pétalo inferior izquierdo -->
-        <div class="petal"></div> <!-- Pétalo inferior derecho -->
-        <div class="petal"></div> <!-- Pétalo medio izquierdo -->
-        <div class="petal"></div> <!-- Pétalo medio derecho -->
+    <!-- Tulip container -->
+    <div class="tulip-container">
+        <div class="stem"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
     </div>
 
+    <!-- Button -->
     <div class="button-container" id="buttonContainer">
-        <button>Te quiero mucho Sebastian, por ti hasta sería programadora <3</button>
+        <button>I love you Sebastian, for you I would even become a programmer <3</button>
     </div>
 
+    <!-- Particles or stars -->
     <script>
-        // Mostrar el botón después de que la rosa se arme completamente
+        // Generate random particles (stars) in the background
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            star.style.width = `${Math.random() * 3}px`;
+            star.style.height = star.style.width;
+            document.body.appendChild(star);
+        }
+
+        // Show the button after the tulip is fully formed
         setTimeout(function() {
             document.getElementById('buttonContainer').classList.add('show-button');
-        }, 3000); // El botón aparecerá después de 3 segundos
+        }, 3000); // The button appears after 3 seconds
     </script>
 
 </body>
