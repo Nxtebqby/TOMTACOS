@@ -83,7 +83,7 @@
         }
 
         /* Distribución de los pétalos alrededor del centro */
-        .petal:nth-child(1) { top: 50x; right: 20px; transform: translate(-50%, -50%); } /* Arriba */
+        .petal:nth-child(1) { top: 50px; right: 20px; transform: translate(-50%, -50%); } /* Arriba */
         .petal:nth-child(2) { top: -20px; left: 30px; transform: translate(-50%, -50%); } /* Izquierda */
         .petal:nth-child(3) { top: 35px; right: 10%; transform: translate(50%, -50%); } /* Derecha */
         .petal:nth-child(4) { top: 35px; left: 10%; transform: translate(-50%, 50%); } /* Abajo */
@@ -148,11 +148,22 @@
 
         /* Estilo para el mensaje */
         #message {
-            font-size: 16px; /* Tamaño del texto reducido */
+            font-size: 14px; /* Tamaño del texto reducido */
             font-weight: bold;
             display: none; /* Oculta el mensaje inicialmente */
             margin-top: 20px;
             font-family: 'Arial', sans-serif; /* Cambiar a la fuente que desees */
+            opacity: 0; /* Inicialmente invisible */
+            animation: fadeIn 1s ease forwards; /* Animación de fade in */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -208,11 +219,13 @@
             const center = flowerContainer.querySelector('.center');
             center.style.animation = 'appearCenter 0.8s ease forwards';
 
-            // Muestra el mensaje
+            // Muestra el mensaje con fade in
             const message = document.getElementById('message');
             setTimeout(() => {
                 message.style.display = 'block';
-            }, 3000); // Muestra el mensaje después de 3 segundos
+                message.style.animation = 'fadeIn 1s ease forwards'; // Agrega animación de fade in
+                message.style.opacity = 1; // Asegúrate de que sea visible
+            }, 2000); // Muestra el mensaje después de 2 segundos 
         });
     </script>
 
