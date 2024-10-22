@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I love you, Sebastian</title>
+    <title>Te quiero mucho, Sebastian</title>
     <style>
         body {
             background-color: black;
@@ -17,7 +17,7 @@
             position: relative;
         }
 
-        /* Particles or stars in the background */
+        /* Partículas o estrellas en el fondo */
         .star {
             position: absolute;
             width: 2px;
@@ -39,22 +39,59 @@
         .tulip-container {
             position: relative;
             width: 100px;
-            height: 200px;
+            height: 220px;
         }
 
-        /* Stem */
+        /* Tallo */
         .stem {
             position: absolute;
             width: 4px;
-            height: 150px;
-            background-color: white;
+            height: 160px;
+            background-color: green;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             animation: growStem 2s ease-in-out forwards;
         }
 
-        /* Petals */
+        /* Hojas */
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background-color: green;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: growLeaf 1.5s ease forwards;
+        }
+
+        .leaf:nth-child(2) {
+            left: -30px;
+            top: 80px;
+            transform: rotate(-45deg);
+            animation-delay: 0.5s;
+        }
+
+        .leaf:nth-child(3) {
+            right: -30px;
+            top: 100px;
+            transform: rotate(45deg);
+            animation-delay: 0.8s;
+        }
+
+        @keyframes growLeaf {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Pétalos */
         .petal {
             position: absolute;
             width: 60px;
@@ -102,11 +139,11 @@
                 height: 0;
             }
             to {
-                height: 150px;
+                height: 160px;
             }
         }
 
-        /* Button */
+        /* Botón */
         .button-container {
             display: none;
             margin-top: 30px;
@@ -140,22 +177,24 @@
 </head>
 <body>
 
-    <!-- Tulip container -->
+    <!-- Contenedor del tulipán -->
     <div class="tulip-container">
         <div class="stem"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
         <div class="petal"></div>
         <div class="petal"></div>
         <div class="petal"></div>
     </div>
 
-    <!-- Button -->
+    <!-- Botón -->
     <div class="button-container" id="buttonContainer">
-        <button>I love you Sebastian, for you I would even become a programmer <3</button>
+        <button>Te quiero mucho Sebastian, por ti hasta sería programadora <3</button>
     </div>
 
-    <!-- Particles or stars -->
+    <!-- Partículas o estrellas -->
     <script>
-        // Generate random particles (stars) in the background
+        // Generar partículas (estrellas) aleatorias en el fondo
         for (let i = 0; i < 100; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
@@ -167,10 +206,10 @@
             document.body.appendChild(star);
         }
 
-        // Show the button after the tulip is fully formed
+        // Mostrar el botón después de que el tulipán se arme completamente
         setTimeout(function() {
             document.getElementById('buttonContainer').classList.add('show-button');
-        }, 3000); // The button appears after 3 seconds
+        }, 3500); // El botón aparecerá después de 3.5 segundos
     </script>
 
 </body>
