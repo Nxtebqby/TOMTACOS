@@ -17,47 +17,72 @@
 
         .rose-container {
             position: relative;
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 200px;
         }
 
-        .petal {
+        /* Tallo */
+        .stem {
             position: absolute;
-            width: 150px;
+            bottom: 0;
+            width: 4px;
             height: 150px;
-            background: pink;
-            border-radius: 50%;
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-            animation: grow 2s ease-in-out forwards;
+            background-color: green;
+            animation: grow-stem 2s ease-in-out forwards;
             opacity: 0;
         }
 
-        .petal:nth-child(1) {
-            animation-delay: 0.5s;
-            transform: rotate(0deg);
+        @keyframes grow-stem {
+            from {
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                height: 150px;
+                opacity: 1;
+            }
         }
 
-        .petal:nth-child(2) {
+        /* Pétalos */
+        .petal {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: pink;
+            border-radius: 50%;
+            animation: grow-petal 2s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .petal:nth-child(2) { /* Pétalo superior */
+            top: -40px;
+            left: 20px;
             animation-delay: 1s;
-            transform: rotate(72deg);
         }
-
-        .petal:nth-child(3) {
+        .petal:nth-child(3) { /* Pétalo inferior izquierdo */
+            top: 10px;
+            left: 0;
+            transform: rotate(-45deg);
             animation-delay: 1.5s;
-            transform: rotate(144deg);
         }
-
-        .petal:nth-child(4) {
+        .petal:nth-child(4) { /* Pétalo inferior derecho */
+            top: 10px;
+            left: 40px;
+            transform: rotate(45deg);
+            animation-delay: 1.5s;
+        }
+        .petal:nth-child(5) { /* Pétalo medio izquierdo */
+            top: -10px;
+            left: -20px;
             animation-delay: 2s;
-            transform: rotate(216deg);
+        }
+        .petal:nth-child(6) { /* Pétalo medio derecho */
+            top: -10px;
+            left: 60px;
+            animation-delay: 2s;
         }
 
-        .petal:nth-child(5) {
-            animation-delay: 2.5s;
-            transform: rotate(288deg);
-        }
-
-        @keyframes grow {
+        @keyframes grow-petal {
             from {
                 transform: scale(0.2);
                 opacity: 0;
@@ -101,15 +126,16 @@
 <body>
 
     <div class="rose-container">
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
+        <div class="stem"></div> <!-- Tallo -->
+        <div class="petal"></div> <!-- Pétalo superior -->
+        <div class="petal"></div> <!-- Pétalo inferior izquierdo -->
+        <div class="petal"></div> <!-- Pétalo inferior derecho -->
+        <div class="petal"></div> <!-- Pétalo medio izquierdo -->
+        <div class="petal"></div> <!-- Pétalo medio derecho -->
     </div>
 
     <div class="button-container" id="buttonContainer">
-        <button>Te quiero mucho Sebastian, por ti sería hasta programadora</button>
+        <button>Te quiero mucho Sebastian, por ti hasta sería programadora <3</button>
     </div>
 
     <script>
