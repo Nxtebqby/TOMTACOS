@@ -36,123 +36,67 @@
             }
         }
 
-        .tulip-container {
+        .flower-container {
             position: relative;
-            width: 100px;
-            height: 220px;
-        }
-
-        /* Tallo */
-        .stem {
-            position: absolute;
-            width: 4px;
-            height: 160px;
-            background-color: green;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: growStem 2s ease-in-out forwards;
-        }
-
-        /* Hojas */
-        .leaf {
-            position: absolute;
-            width: 40px;
-            height: 20px;
-            background-color: green;
-            border-radius: 50%;
-            opacity: 0;
-            transform: scale(0.5);
-            animation: growLeaf 1.5s ease forwards;
-        }
-
-        .leaf:nth-child(2) {
-            left: -30px;
-            top: 80px;
-            transform: rotate(-45deg);
-            animation-delay: 0.5s;
-        }
-
-        .leaf:nth-child(3) {
-            right: -30px;
-            top: 100px;
-            transform: rotate(45deg);
-            animation-delay: 0.8s;
-        }
-
-        @keyframes growLeaf {
-            from {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            width: 150px;
+            height: 150px;
+            display: none; /* Oculta la flor inicialmente */
         }
 
         /* Pétalos */
         .petal {
             position: absolute;
             width: 60px;
-            height: 80px;
+            height: 60px;
             background: white;
-            border-radius: 60% 60% 0 0;
+            border-radius: 50%;
             opacity: 0;
-            transform: scale(0.2);
-            animation: growPetal 2s ease-in-out forwards;
+            transform: scale(0);
+            animation: growPetal 0.8s ease forwards;
         }
 
-        .petal:nth-child(2) {
-            top: 10px;
-            left: 10px;
-            transform: rotate(-20deg);
-            animation-delay: 0.5s;
-        }
-
-        .petal:nth-child(3) {
-            top: 10px;
-            right: 10px;
-            transform: rotate(20deg);
-            animation-delay: 1s;
-        }
-
-        .petal:nth-child(4) {
-            top: 0;
-            left: 25px;
-            animation-delay: 1.5s;
-        }
+        /* Distribución de los pétalos */
+        .petal:nth-child(1) { top: 10px; left: 30px; }
+        .petal:nth-child(2) { top: 10px; right: 30px; }
+        .petal:nth-child(3) { bottom: 30px; left: 10px; }
+        .petal:nth-child(4) { bottom: 30px; right: 10px; }
+        .petal:nth-child(5) { top: 30px; left: 50%; transform: translate(-50%, -50%); }
 
         @keyframes growPetal {
-            from {
-                transform: scale(0.2);
+            0% {
+                transform: scale(0);
                 opacity: 0;
             }
-            to {
+            100% {
                 transform: scale(1);
                 opacity: 1;
             }
         }
 
-        @keyframes growStem {
+        /* Centro de la flor */
+        .center {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: yellow;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: appearCenter 0.8s ease forwards;
+        }
+
+        @keyframes appearCenter {
             from {
-                height: 0;
+                opacity: 0;
             }
             to {
-                height: 160px;
+                opacity: 1;
             }
         }
 
         /* Botón */
-        .button-container {
-            display: none;
-            margin-top: 30px;
-        }
-
-        .show-button {
-            display: inline-block;
-        }
-
         button {
             padding: 10px 20px;
             font-size: 16px;
@@ -162,6 +106,7 @@
             border-radius: 5px;
             cursor: pointer;
             animation: fadeIn 1s ease forwards;
+            margin-top: 20px;
         }
 
         @keyframes fadeIn {
@@ -177,19 +122,17 @@
 </head>
 <body>
 
-    <!-- Contenedor del tulipán -->
-    <div class="tulip-container">
-        <div class="stem"></div>
-        <div class="leaf"></div>
-        <div class="leaf"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-    </div>
-
     <!-- Botón -->
-    <div class="button-container" id="buttonContainer">
-        <button>Te quiero mucho Sebastian, por ti hasta sería programadora <3</button>
+    <button id="startButton">Comenzar a armar la flor</button>
+
+    <!-- Contenedor de la flor -->
+    <div class="flower-container" id="flowerContainer">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
     </div>
 
     <!-- Partículas o estrellas -->
@@ -206,10 +149,24 @@
             document.body.appendChild(star);
         }
 
-        // Mostrar el botón después de que el tulipán se arme completamente
-        setTimeout(function() {
-            document.getElementById('buttonContainer').classList.add('show-button');
-        }, 3500); // El botón aparecerá después de 3.5 segundos
+        // Función para comenzar la animación de la flor
+        document.getElementById('startButton').addEventListener('click', function() {
+            const flowerContainer = document.getElementById('flowerContainer');
+            flowerContainer.style.display = 'block'; // Muestra la flor
+
+            // Inicia las animaciones de los pétalos y el centro
+            const petals = flowerContainer.querySelectorAll('.petal');
+            petals.forEach((petal, index) => {
+                petal.style.animationDelay = `${index * 0.2}s`;
+                petal.style.animation = 'growPetal 0.8s ease forwards';
+            });
+            const center = flowerContainer.querySelector('.center');
+            center.style.animation = 'appearCenter 0.8s ease forwards';
+
+            // Desactiva el botón después de hacer clic
+            this.disabled = true;
+            this.textContent = "Flor armada!";
+        });
     </script>
 
 </body>
