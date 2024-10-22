@@ -70,46 +70,11 @@
             }
         }
 
-        /* Hojas */
-        .leaf {
-            position: absolute;
-            width: 50px;
-            height: 25px;
-            background-color: green;
-            border-radius: 25px;
-            opacity: 0;
-            transform: scale(0);
-            animation: growLeaf 0.5s ease forwards;
-        }
-
-        .leaf.left {
-            bottom: 20px;
-            left: -30px;
-            transform: rotate(-30deg);
-        }
-
-        .leaf.right {
-            bottom: 20px;
-            right: -30px;
-            transform: rotate(30deg);
-        }
-
-        @keyframes growLeaf {
-            from {
-                transform: scale(0);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
         /* Pétalos */
         .petal {
             position: absolute;
             width: 40px; /* Ajustar el tamaño de los pétalos */
-            height: 60px;
+            height: 40px;
             background: white;
             border-radius: 50%;
             opacity: 0;
@@ -117,12 +82,14 @@
             animation: growPetal 0.8s ease forwards;
         }
 
-        /* Distribución de los pétalos en forma de pentágono */
-        .petal:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, -100%); }
-        .petal:nth-child(2) { top: 20px; left: 0; transform: translate(-50%, -50%); }
-        .petal:nth-child(3) { top: 60px; left: 10px; transform: translate(-50%, -50%); }
-        .petal:nth-child(4) { top: 60px; right: 10px; transform: translate(50%, -50%); }
-        .petal:nth-child(5) { top: 20px; right: 0; transform: translate(50%, -50%); }
+        /* Distribución de los pétalos en forma de rosa */
+        .petal:nth-child(1) { top: 10px; left: 50%; transform: translate(-50%, -100%); }
+        .petal:nth-child(2) { top: 30px; left: 0; transform: translate(-50%, -50%); }
+        .petal:nth-child(3) { top: 30px; left: 100%; transform: translate(-100%, -50%); }
+        .petal:nth-child(4) { top: 50px; left: 10px; transform: translate(-50%, -50%); }
+        .petal:nth-child(5) { top: 50px; right: 10px; transform: translate(50%, -50%); }
+        .petal:nth-child(6) { top: 30px; left: 20px; transform: translate(-50%, -50%); }
+        .petal:nth-child(7) { top: 30px; right: 20px; transform: translate(50%, -50%); }
 
         @keyframes growPetal {
             0% {
@@ -182,7 +149,7 @@
 
         /* Estilo para el mensaje */
         #message {
-            font-size: 24px;
+            font-size: 18px; /* Tamaño del texto reducido */
             font-weight: bold;
             display: none; /* Oculta el mensaje inicialmente */
             margin-top: 20px;
@@ -198,8 +165,8 @@
     <!-- Contenedor de la flor -->
     <div class="flower-container" id="flowerContainer">
         <div class="stem"></div>
-        <div class="leaf left"></div>
-        <div class="leaf right"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
         <div class="petal"></div>
         <div class="petal"></div>
         <div class="petal"></div>
@@ -232,13 +199,9 @@
             const flowerContainer = document.getElementById('flowerContainer');
             flowerContainer.style.display = 'block'; // Muestra la flor
 
-            // Inicia las animaciones del tallo, hojas, pétalos y centro
+            // Inicia las animaciones del tallo, pétalos y centro
             const stem = flowerContainer.querySelector('.stem');
             stem.style.animation = 'growStem 1s ease forwards';
-            flowerContainer.querySelectorAll('.leaf').forEach((leaf, index) => {
-                leaf.style.animationDelay = `${1 + index * 0.5}s`;
-                leaf.style.animation = 'growLeaf 0.5s ease forwards';
-            });
             const petals = flowerContainer.querySelectorAll('.petal');
             petals.forEach((petal, index) => {
                 petal.style.animationDelay = `${1.5 + index * 0.2}s`;
