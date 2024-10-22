@@ -180,6 +180,14 @@
             }
         }
 
+        /* Estilo para el mensaje */
+        #message {
+            font-size: 24px;
+            font-weight: bold;
+            display: none; /* Oculta el mensaje inicialmente */
+            margin-top: 20px;
+            font-family: 'Arial', sans-serif; /* Cambiar a la fuente que desees */
+        }
     </style>
 </head>
 <body>
@@ -200,7 +208,7 @@
         <div class="center"></div>
     </div>
 
-    <div id="message" style="display:none; margin-top: 20px;">
+    <div id="message">
         <h2>Te quiero mucho Sebastian, por ti hasta sería programadora &lt;3</h2>
     </div>
 
@@ -220,6 +228,7 @@
 
         // Función para comenzar la animación de la flor
         document.getElementById('startButton').addEventListener('click', function() {
+            this.style.display = 'none'; // Esconde el botón
             const flowerContainer = document.getElementById('flowerContainer');
             flowerContainer.style.display = 'block'; // Muestra la flor
 
@@ -243,9 +252,6 @@
             setTimeout(() => {
                 message.style.display = 'block';
             }, 3000); // Muestra el mensaje después de 3 segundos
-
-            // Desactiva el botón después de hacer clic
-            this.disabled = true;
         });
     </script>
 
